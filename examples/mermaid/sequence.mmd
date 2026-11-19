@@ -1,0 +1,21 @@
+sequenceDiagram
+  autonumber
+  actor User
+  participant App as Web app
+  participant Auth as Auth service
+  participant DB as Database
+  User->>App: Sign in with email
+  App->>+Auth: POST /token
+  Auth->>DB: Look up user
+  DB-->>Auth: User record
+  alt password matches
+    Auth-->>App: Access token
+    App-->>User: Welcome back
+  else wrong password
+    Auth-->>-App: 401 Unauthorized
+    App-->>User: Try again
+  end
+  Note over App,Auth: Tokens expire after 15 minutes
+  loop every 14 minutes
+    App->>Auth: Refresh token
+  end

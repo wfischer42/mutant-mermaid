@@ -1,0 +1,11 @@
+{
+  "name": "mutant-mermaid",
+  "owner": { "name": "wfischer42" },
+  "plugins": [
+    {
+      "name": "mutant-mermaid",
+      "source": "./",
+      "description": "Render Mermaid and mutant-mermaid diagrams to PNG and show them beside the session."
+    }
+  ]
+}

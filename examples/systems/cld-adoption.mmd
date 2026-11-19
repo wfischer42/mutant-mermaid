@@ -1,0 +1,8 @@
+cld "Product adoption"
+  Adopters -> "Word of mouth" : +
+  "Word of mouth" -> "Adoption rate" : +
+  "Adoption rate" -> Adopters : +
+  "Potential adopters" -> "Adoption rate" : +
+  "Adoption rate" -> "Potential adopters" : -
+  loop R "Word of mouth"
+  loop B "Market saturation"

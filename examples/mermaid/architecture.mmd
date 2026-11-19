@@ -1,0 +1,14 @@
+architecture-beta
+  group cloud(cloud)[Cloud]
+  group data(database)[Data] in cloud
+
+  service gateway(internet)[Gateway] in cloud
+  service api(server)[API] in cloud
+  service db(database)[Postgres] in data
+  service files(disk)[Object store] in data
+  service queue(server)[Queue] in cloud
+
+  gateway:R --> L:api
+  api:R --> L:db
+  api:B --> T:queue
+  queue:R --> L:files

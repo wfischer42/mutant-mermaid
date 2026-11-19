@@ -1,0 +1,20 @@
+flowchart TD
+    A([Customer opens ticket]) --> B{Known issue?}
+    B -->|Yes| C[Send help-center article]
+    B -->|No| D{Account tier}
+    C --> E{Resolved?}
+    E -->|Yes| Z([Close ticket])
+    E -->|No| D
+    D -->|Enterprise| F[Page on-call engineer]
+    D -->|Pro| G[Assign to support queue]
+    D -->|Free| H[Community forum]
+    F --> I{Bug confirmed?}
+    G --> I
+    I -->|Yes| J[File Jira issue]
+    I -->|No| K[Reply with workaround]
+    J --> L[Notify customer of fix]
+    K --> Z
+    L --> Z
+    H -.-> Z
+    click F call pageOnCall("enterprise") "Page the on-call engineer"
+    click J href "https://linear.app/new" _blank

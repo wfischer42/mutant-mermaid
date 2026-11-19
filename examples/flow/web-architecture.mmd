@@ -1,0 +1,40 @@
+flowchart TB
+    user((User)) --> cdn[CloudFront CDN]
+    cdn --> lb[Load balancer]
+
+    subgraph edge [Edge]
+        cdn
+        waf[WAF rules]
+    end
+    cdn --- waf
+
+    subgraph app [Application tier]
+        direction TB
+        lb --> web1[Web server 1]
+        lb --> web2[Web server 2]
+        web1 & web2 --> api[API gateway]
+        subgraph services [Services]
+            auth[Auth service]
+            orders[Order service]
+            search[Search service]
+            notify[Notification service]
+        end
+        api --> auth & orders & search
+        orders --> notify
+    end
+
+    subgraph data [Data tier]
+        pg[(PostgreSQL)]
+        replica[(Read replica)]
+        redis[(Redis)]
+        es[(Elasticsearch)]
+        s3[(S3 bucket)]
+    end
+
+    auth --> redis
+    orders --> pg
+    pg -. replication .-> replica
+    search --> es
+    orders --> s3
+    notify --> mail>Email provider]
+    notify --> sms>SMS gateway]

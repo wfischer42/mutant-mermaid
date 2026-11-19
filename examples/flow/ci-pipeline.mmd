@@ -1,0 +1,24 @@
+---
+title: CI/CD pipeline
+---
+flowchart LR
+    dev([Developer]) -->|git push| pr[Pull request]
+
+    subgraph ci [Continuous integration]
+        direction LR
+        lint[Lint & format] --> unit[Unit tests]
+        unit --> build[[Build image]]
+        build --> scan{Vulnerabilities?}
+    end
+
+    subgraph cd [Delivery]
+        staging[Deploy to staging] --> e2e[E2E tests]
+        e2e --> approve{Manual approval}
+        approve -->|approved| prod[(Production)]
+    end
+
+    pr --> lint
+    scan -->|none| staging
+    scan -.->|found| fix[Open security issue]
+    approve -.->|rejected| fix
+    fix -.-> dev

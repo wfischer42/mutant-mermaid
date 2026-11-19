@@ -1,0 +1,6 @@
+railroad-ebnf-beta
+  title JSON value
+  value = object | array | string | number | "true" | "false" | "null" ;
+  object = "{" , [ member , { "," , member } ] , "}" ;
+  member = string , ":" , value ;
+  array = "[" , [ value , { "," , value } ] , "]" ;

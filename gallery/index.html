@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mutant Mermaid</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="bar">
+      <a class="brand" href="#">Mutant <em>Mermaid</em></a>
+      <nav class="views">
+        <button data-view="gallery" class="on">Gallery</button>
+        <button data-view="play">Playground</button>
+      </nav>
+      <div class="controls">
+        <label>Theme <select id="theme"></select></label>
+        <label>Look
+          <select id="look">
+            <option value="">default</option>
+            <option value="clean">clean</option>
+            <option value="organic">organic</option>
+            <option value="sketch">sketch</option>
+            <option value="boxy">boxy</option>
+          </select>
+        </label>
+        <label>Font <select id="font"></select></label>
+        <label>Headings <select id="heading-font"></select></label>
+        <button id="dark" class="toggle" title="Toggle dark mode">◐</button>
+      </div>
+    </header>
+    <div class="layout">
+      <aside id="families"></aside>
+      <main id="main"></main>
+    </div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+flowchart LR
+  %% A checkout flow with a retry loop and a fraud review branch
+  cart([Cart]) --> checkout[Checkout]
+  checkout --> pay{Payment ok?}
+  pay -- yes --> fraud{Risk score}
+  pay -- no --> retry[Ask for another card]
+  retry --> checkout
+  fraud -- low --> confirm[Confirm order]
+  fraud -- high --> review[[Manual review]]
+  review --> confirm
+  subgraph fulfilment [Fulfilment]
+    direction TB
+    confirm --> pick[Pick & pack]
+    pick --> ship[(Shipments DB)]
+  end
+  ship --> done((Delivered))

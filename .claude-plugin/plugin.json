@@ -1,0 +1,6 @@
+{
+  "name": "mutant-mermaid",
+  "version": "0.3.5",
+  "description": "Render Mermaid and mutant-mermaid diagrams to PNG and show them beside the session: in a Rex or tmux pane, or in the system image viewer.",
+  "author": { "name": "wfischer42" }
+}

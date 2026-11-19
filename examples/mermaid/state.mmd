@@ -1,0 +1,17 @@
+stateDiagram-v2
+  [*] --> Draft
+  Draft --> InReview : submit
+  InReview --> Draft : request changes
+  InReview --> Approved : approve
+  state Approved {
+    [*] --> Scheduled
+    Scheduled --> Publishing : time reached
+    Publishing --> Live : success
+    Publishing --> Scheduled : retry
+  }
+  Approved --> Archived : unpublish
+  Live --> Archived : expire
+  Archived --> [*]
+  note right of InReview
+    Two reviewers must approve
+  end note

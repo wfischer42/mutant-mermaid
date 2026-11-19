@@ -1,0 +1,7 @@
+agentflow-beta LR
+  user[User question] --> router{Router}
+  router --> search[Search agent]
+  router --> code[Code agent]
+  search --> answer[Compose answer]
+  code --> answer
+  answer --> user

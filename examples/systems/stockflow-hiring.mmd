@@ -1,0 +1,18 @@
+stockflow "Hiring pipeline"
+  stock Candidates
+  stock "New hires"
+  stock Experienced
+  flow applications : cloud -> Candidates
+  flow hiring : Candidates -> "New hires"
+  flow ramping : "New hires" -> Experienced
+  flow attrition : Experienced -> cloud
+  aux recruiting_spend
+  aux interview_capacity
+  aux ramp_time
+  recruiting_spend -> applications : +
+  interview_capacity -> hiring : +
+  Candidates -> hiring : +
+  "New hires" -> ramping : +
+  ramp_time -> ramping : -
+  Experienced -> attrition : +
+  Experienced -> interview_capacity : +

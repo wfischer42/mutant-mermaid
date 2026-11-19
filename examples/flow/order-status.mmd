@@ -1,0 +1,16 @@
+graph TD
+    classDef done fill:#9f6,stroke:#333,stroke-width:2px;
+    classDef active fill:#bbf,stroke:#33f,stroke-width:2px;
+    classDef blocked fill:#f96,stroke:#c00,stroke-dasharray: 5 5;
+    classDef danger fill:#d33,stroke:#900,color:#fff;
+
+    cart[Cart checkout]:::done --> pay[Payment authorised]:::done
+    pay --> pick[Pick & pack]:::active
+    pick --> ship[Hand to carrier]
+    pick --> oos[Item out of stock]:::blocked
+    oos --> refund[Partial refund]
+    ship --> deliver[Delivered]
+    ship --> lost[Lost in transit]
+    lost --> claim[Carrier claim]
+    class lost danger
+    style deliver fill:#e0f7fa,stroke:#00838f

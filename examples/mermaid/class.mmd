@@ -1,0 +1,34 @@
+classDiagram
+  direction LR
+  class Order {
+    +String id
+    +Date placedAt
+    +List~LineItem~ items
+    +total() Money
+    +cancel() void
+  }
+  class LineItem {
+    +String sku
+    +int quantity
+    +Money price
+  }
+  class Customer {
+    +String name
+    +String email
+    +orders() List~Order~
+  }
+  class PaymentMethod {
+    <<interface>>
+    +charge(Money amount) Receipt
+  }
+  class Card {
+    +String last4
+  }
+  class Wallet {
+    +String provider
+  }
+  Customer "1" --> "*" Order : places
+  Order *-- "1..*" LineItem : contains
+  Order --> PaymentMethod : paid with
+  PaymentMethod <|.. Card
+  PaymentMethod <|.. Wallet

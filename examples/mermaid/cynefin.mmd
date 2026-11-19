@@ -1,0 +1,17 @@
+cynefin-beta
+  title Incident response
+  clear
+    "Restart a crashed worker"
+    "Rotate an expired certificate"
+  complicated
+    "Tune slow database queries"
+    "Capacity planning"
+  complex
+    "Unexplained latency spikes"
+    "Team adoption of on-call"
+  chaotic
+    "Full regional outage"
+  confusion
+    "Alerts with no owner"
+  chaotic --> complex : "stabilise first"
+  complex --> complicated : "once patterns emerge"

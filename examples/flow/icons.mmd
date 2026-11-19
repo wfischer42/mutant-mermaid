@@ -1,0 +1,7 @@
+%% Lucide icons in labels: :name: draws the icon in the label's color
+flowchart LR
+  user([:user: Customer]) -->|:globe: HTTPS| web[:monitor: Web app]
+  web --> api[:server: API]
+  api --> db[(:database: Postgres)]
+  api --> mail[:mail: Email queue]
+  mail --> sent[:send: Delivered]

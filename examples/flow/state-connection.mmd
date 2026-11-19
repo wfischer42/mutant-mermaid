@@ -1,0 +1,19 @@
+stateDiagram-v2
+    direction LR
+    state "Disconnected" as Off
+    [*] --> Off
+    Off --> Connecting : connect()
+    Connecting --> check
+    state check <<choice>>
+    check --> Connected : handshake ok
+    check --> Backoff : error
+    Backoff --> Connecting : retry after delay
+    Connected --> sync
+    state sync <<fork>>
+    sync --> Heartbeat
+    sync --> Streaming
+    Heartbeat --> merge
+    Streaming --> merge
+    state merge <<join>>
+    merge --> Off : socket closed
+    Off --> [*] : dispose()

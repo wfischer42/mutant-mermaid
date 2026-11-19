@@ -1,0 +1,20 @@
+timeline "Atlas 2026 roadmap" now=2026-05-12
+  era H1 2026-01 .. 2026-06 #sky
+  era H2 2026-07 .. 2026-12 #violet
+  lane Platform #blue
+    span  Storage rewrite   2026-01 .. 2026-04
+    span  Multi-region      2026-04 .. 2026-08?
+    event Postgres 17       2026-02-10
+    milestone GA            2026-09-01 !major
+  lane Product #coral
+    span  Onboarding v2     2026-02 .. 2026-05
+    span  Billing           2026-05 .. 2026-07
+    span  Mobile app        2026-07 .. 2026-11~
+    event Beta invite wave  2026-03-15
+    event Pricing launch    2026-07-01
+  lane Go-to-market #green
+    event Design partners   2026-01-20
+    span  Private beta      2026-03 .. 2026-06
+    event Launch week       2026-09-14 !major
+    event Conference talk   2026-10-22?
+  note Dates after now are targets; ? marks a date still being negotiated.

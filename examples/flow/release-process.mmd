@@ -1,0 +1,42 @@
+%% A larger process: feature work through release, about 24 nodes
+flowchart TD
+    idea([Feature request]) --> triage{Fits roadmap?}
+    triage -->|no| backlog[(Backlog)]
+    triage -->|yes| spec[Write spec]
+    spec --> review{Design review}
+    review -->|changes| spec
+    review -->|approved| tickets[Break into tickets]
+
+    subgraph dev [Development]
+        tickets --> branch[Create feature branch]
+        branch --> code[Implement]
+        code --> tests[Write tests]
+        tests --> pr[Open pull request]
+        pr --> cr{Code review}
+        cr -->|changes requested| code
+    end
+
+    subgraph qa [Quality]
+        ci[[CI checks]] --> green{All green?}
+        green -->|no| flaky[Investigate failure]
+        qa_env[Deploy to QA] --> manual[Exploratory testing]
+    end
+
+    cr -->|approved| ci
+    flaky --> code
+    green -->|yes| qa_env
+    manual --> bugs{Bugs found?}
+    bugs -->|yes| code
+    bugs -->|no| merge[Merge to main]
+
+    subgraph release [Release]
+        merge --> tag[Tag version]
+        tag --> notes[/Release notes/]
+        notes --> canary[Canary 5%]
+        canary --> metrics{Error rate ok?}
+        metrics -->|yes| rollout[Full rollout]
+        metrics -->|no| rollback[Roll back]
+    end
+
+    rollback --> code
+    rollout --> done([Shipped])

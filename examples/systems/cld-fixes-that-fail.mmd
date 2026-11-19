@@ -1,0 +1,8 @@
+cld "Fixes that fail"
+  %% The quick fix relieves the symptom now, and feeds it later.
+  "Problem symptom" -> "Quick fix" : +
+  "Quick fix" -> "Problem symptom" : -
+  "Quick fix" -> "Unintended consequences" : + ||
+  "Unintended consequences" -> "Problem symptom" : +
+  loop B "Symptom relief"
+  loop R "Side effects"

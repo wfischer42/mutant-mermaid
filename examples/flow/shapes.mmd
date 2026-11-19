@@ -1,0 +1,17 @@
+%% Every node shape and link kind Mermaid flowcharts offer
+flowchart LR
+    start((Start)) --> input[/Read config file/]
+    input --> parse[[parseConfig]]
+    parse --> valid{Valid?}
+    valid -- no --> err>Report error]
+    err ==> stop(((Stop)))
+    valid -- yes --> prep{{Prepare workers}}
+    prep --> cache[(Redis cache)]
+    prep --> queue[\Job queue\]
+    queue --> manual[/Manual review\]
+    cache -.-> run(Run jobs)
+    manual --> run
+    run --> report[\Write report/]
+    report --o archive([Archive])
+    report --x purge[Purge temp files]
+    run <--> monitor["Monitor (Grafana)"]

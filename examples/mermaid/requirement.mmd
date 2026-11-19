@@ -1,0 +1,36 @@
+requirementDiagram
+
+  requirement fast_checkout {
+    id: R1
+    text: Checkout completes in under two seconds
+    risk: high
+    verifymethod: test
+  }
+
+  performanceRequirement cached_catalog {
+    id: R1.1
+    text: Catalog pages are served from cache
+    risk: medium
+    verifymethod: analysis
+  }
+
+  functionalRequirement saved_cards {
+    id: R2
+    text: Returning users can pay with a saved card
+    risk: low
+    verifymethod: demonstration
+  }
+
+  element checkout_service {
+    type: service
+    docref: services/checkout
+  }
+
+  element load_test {
+    type: "test suite"
+  }
+
+  checkout_service - satisfies -> fast_checkout
+  fast_checkout - contains -> cached_catalog
+  load_test - verifies -> fast_checkout
+  checkout_service - satisfies -> saved_cards

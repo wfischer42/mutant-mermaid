@@ -1,0 +1,40 @@
+wireframe "Analytics dashboard" device=browser url=app.acme.io/dashboard width=1100
+  header
+    logo Acme
+    search Search reports
+    nav Docs | Support | [Upgrade]
+    avatar
+  row
+    sidebar
+      text Workspace !muted
+      nav Overview
+      nav Reports
+      nav Customers
+      nav Billing
+      divider
+      text Settings !muted
+      nav Team
+      nav Integrations
+    main
+      row
+        h2 Overview
+        spacer
+        select Last 30 days w=180
+        button Export
+      grid cols=3
+        card Revenue
+          h1 $48.2k
+          badge +12%
+        card Active users
+          h1 3,914
+          badge +4%
+        card Churn
+          h1 2.1%
+          badge -0.3%
+      tabs [Traffic] | Conversions | Retention
+      chart line h=220
+      table
+        Page | Visitors | Bounce | Time
+        /pricing | 12,402 | 34% | 1m 12s
+        /docs | 9,318 | 21% | 3m 40s
+        /blog/launch | 4,977 | 48% | 2m 05s

@@ -1,0 +1,16 @@
+usecase-beta
+  direction LR
+  actor Customer
+  actor Admin
+  systemBoundary "Online shop"
+    browse(Browse catalog)
+    buy(Place order)
+    pay(Pay)
+    review(Write a review)
+    manage(Manage products)
+  end
+  Customer --> browse
+  Customer --> buy
+  Customer --> review
+  buy ..> : include pay
+  Admin --> manage

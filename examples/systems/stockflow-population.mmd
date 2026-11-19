@@ -1,0 +1,12 @@
+stockflow "Population"
+  stock Population
+  flow births : cloud -> Population
+  flow deaths : Population -> cloud
+  aux birth_rate
+  aux average_lifetime
+  birth_rate -> births : +
+  Population -> births : +
+  Population -> deaths : +
+  average_lifetime -> deaths : -
+  loop R "More people, more births"
+  loop B "Mortality"

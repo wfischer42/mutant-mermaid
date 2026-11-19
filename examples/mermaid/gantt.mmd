@@ -1,0 +1,17 @@
+gantt
+  title Mobile app launch
+  dateFormat YYYY-MM-DD
+  axisFormat %b %d
+  excludes weekends
+  section Design
+    Research          :done,    research, 2026-03-02, 5d
+    Wireframes        :done,    wires, after research, 6d
+    Visual design     :active,  visual, after wires, 8d
+  section Build
+    API               :         api, 2026-03-16, 12d
+    iOS app           :         ios, after visual, 14d
+    Android app       :         android, after visual, 16d
+  section Launch
+    Beta testing      :crit,    beta, after android, 7d
+    Store review      :crit,    review, after beta, 4d
+    Launch day        :milestone, launch, after review, 0d

@@ -1,0 +1,17 @@
+block
+  columns 3
+  client["Browser"]:3
+  space:3
+  cdn["CDN"] lb["Load balancer"] auth["Auth"]
+  space:3
+  block:services:3
+    api["API"] worker["Workers"] search["Search"]
+  end
+  space:3
+  db[("Postgres")] queue["Queue"] cache[("Redis")]
+  client --> cdn
+  cdn --> lb
+  lb --> api
+  api --> db
+  worker --> queue
+  search --> cache

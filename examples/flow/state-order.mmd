@@ -1,0 +1,24 @@
+stateDiagram-v2
+    [*] --> Pending
+    Pending --> Paid : payment captured
+    Pending --> Cancelled : timeout (30 min)
+    Paid --> Fulfilment
+
+    state Fulfilment {
+        [*] --> Picking
+        Picking --> Packing
+        Packing --> Shipped : label printed
+        Shipped --> [*]
+    }
+
+    Fulfilment --> Delivered
+    Fulfilment --> Returned : customer return
+    Returned --> Refunded
+    Delivered --> [*]
+    Refunded --> [*]
+    Cancelled --> [*]
+
+    note right of Pending
+        Holds stock for 30 minutes
+        before releasing it.
+    end note

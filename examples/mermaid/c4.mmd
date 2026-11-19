@@ -1,0 +1,15 @@
+C4Context
+  title Online bookshop
+  Person(reader, "Reader", "Buys and reviews books")
+  Person_Ext(courier, "Courier", "Delivers parcels")
+  Enterprise_Boundary(shop, "Bookshop") {
+    System(store, "Web store", "Catalog, cart and checkout")
+    System(warehouse, "Warehouse system", "Stock and shipping")
+    SystemDb(catalog, "Catalog DB", "Books, prices, reviews")
+  }
+  System_Ext(payments, "Payment provider", "Cards and wallets")
+  Rel(reader, store, "Browses and buys")
+  Rel(store, catalog, "Reads")
+  Rel(store, payments, "Charges")
+  Rel(store, warehouse, "Sends orders")
+  Rel(warehouse, courier, "Hands over parcels")

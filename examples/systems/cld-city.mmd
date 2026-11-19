@@ -1,0 +1,20 @@
+cld "Urban growth"
+  Population -> "Housing demand" : +
+  "Housing demand" -> "House prices" : +
+  "House prices" -> Attractiveness : -
+  Attractiveness -> Migration : +
+  Migration -> Population : +
+  Population -> "Tax revenue" : +
+  "Tax revenue" -> Services : + ||
+  Services -> Attractiveness : +
+  Population -> Congestion : +
+  Congestion -> Attractiveness : -
+  "House prices" -> Construction : +
+  Construction -> "Housing demand" : - ||
+  Population -> Jobs : +
+  Jobs -> Attractiveness : +
+  loop R1 "Agglomeration": Population, Jobs, Attractiveness, Migration
+  loop B1 "Affordability": Population, "Housing demand", "House prices", Attractiveness, Migration
+  loop R2 "Public services": Population, "Tax revenue", Services, Attractiveness, Migration
+  loop B2 "Gridlock": Population, Congestion, Attractiveness, Migration
+  loop B3 "Building boom": "Housing demand", "House prices", Construction

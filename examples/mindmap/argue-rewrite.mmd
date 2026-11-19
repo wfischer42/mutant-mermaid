@@ -1,0 +1,7 @@
+argue "Rewrite the billing service in Rust"
+  + Memory safety removes a class of outages
+  + The hot path is CPU-bound
+    - Profiling says most time is spent waiting on the database
+  - Nobody on the team has shipped Rust in production
+    + Two engineers are keen to learn it
+  ? Is a targeted rewrite of the invoicing module enough?

@@ -1,0 +1,16 @@
+swimlane-beta LR
+  subgraph customer [Customer]
+    request[Request refund]
+    receive[Receive money]
+  end
+  subgraph support [Support]
+    check{Within 30 days?}
+    decline[Decline politely]
+  end
+  subgraph finance [Finance]
+    issue[Issue refund]
+  end
+  request --> check
+  check -- yes --> issue
+  check -- no --> decline
+  issue --> receive

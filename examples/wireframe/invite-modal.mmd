@@ -1,0 +1,20 @@
+wireframe "Invite teammates" device=tablet
+  header
+    icon menu
+    h3 Projects
+    icon bell
+  tabs [All] | Shared | Archived
+  list
+    Website redesign | 12 tasks
+    [Mobile app v2] | 8 tasks
+    Q3 planning | 3 tasks
+    Brand refresh | 21 tasks
+  lines 4
+  modal Invite teammates
+    text People you invite can see and edit every project in this workspace.
+    input Email addresses : name@company.com, …
+    select Role : Editor
+    toggle Send a welcome email !on
+    row align=end
+      button Cancel !ghost
+      button Send invites !primary

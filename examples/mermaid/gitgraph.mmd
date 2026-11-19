@@ -1,0 +1,18 @@
+gitGraph
+  commit id: "init"
+  commit id: "readme"
+  branch feature/search
+  checkout feature/search
+  commit id: "index"
+  commit id: "query ui"
+  checkout main
+  branch hotfix
+  commit id: "fix login"
+  checkout main
+  merge hotfix tag: "v1.0.1"
+  checkout feature/search
+  commit id: "ranking"
+  checkout main
+  merge feature/search tag: "v1.1.0"
+  branch release
+  commit id: "changelog"
