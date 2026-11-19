@@ -7,6 +7,14 @@ here=$(cd "$(dirname "$0")" && pwd)
 src=$(cd "$(dirname "$1")" && pwd)/$(basename "$1")
 shift
 png="${src%.*}.png"
+# Rex doesn't answer OSC 11 background queries, so read its appearance setting (dark, light or system).
+if [ -n "$REX_SESSION" ] && [ "$(uname)" = Darwin ]; then
+  case $(defaults read com.superlogical.rex Workspace.appearance 2>/dev/null) in
+    dark) set -- --dark "$@" ;;
+    light) ;;
+    *) [ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" = Dark ] && set -- --dark "$@" ;;
+  esac
+fi
 "$here/mm.sh" render "$src" -o "$png" --scale 3 "$@"
 echo "$png"
 if [ -n "$REX_SESSION" ]; then
